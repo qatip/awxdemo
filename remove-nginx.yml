@@ -1,0 +1,19 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Ensure NGINX is installed
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Show deprovisioned page
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <html>
+            <body style="font-family: sans-serif; text-align:center; padding:50px;">
+              <h1>Environment cleaned up</h1>
+              <p>This site was deprovisioned by AWX.</p>
+            </body>
+          </html>
